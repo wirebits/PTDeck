@@ -4,6 +4,7 @@ A powerful 14-key customizable macro pad powered by Raspberry Pi Pico designed f
 # Key Features
 - Minimal Setup.
 - Store payloads in folder for better management.
+- Executes multiple payloads from single button.
 
 # Hardware Requirements
 - Raspberry Pi Pico
@@ -42,6 +43,7 @@ A powerful 14-key customizable macro pad powered by Raspberry Pi Pico designed f
   - **lib/**
       - `adafruit_hid`
   - `code.py`
+  - `pins.conf`
   - **payloads/**
     - `payload-X.txt`
   - where `X` is a number like `0`,`1`,`2`,`3` etc.
@@ -50,7 +52,7 @@ A powerful 14-key customizable macro pad powered by Raspberry Pi Pico designed f
 1. Download or Clone the Repository.
 2. Open the folder.
 3. Make sure that your Raspberry Pi Pico board is connected to your PC/Laptop.
-5. Copy `code.py` in the `CIRCUITPY`.
+5. Copy `code.py` and `pins.conf` in the `CIRCUITPY`.
    - It ask for replacement of `code.py` file, then replace it.
    - It will overwrite in the `code.py` file.
 
@@ -59,9 +61,40 @@ A powerful 14-key customizable macro pad powered by Raspberry Pi Pico designed f
 2. Write your payload in it.
 3. When saving the file, select `CIRCUITPY`.
 4. Then go to the `payloads` folder.
-5. Name the payload as `payload-0`, `payload-1` etc.
+5. Name the payload as `payload-1`, `payload-2` etc.
    - It is saved by default as `.txt` files.
-   - It always starts with `0` like `payload-0`, `payload-1` etc.
+
+# CONF File
+- It contain `3` variables : `PIN`,`PRESS_COUNT` and `PAYLOAD_COUNT`.
+- `PIN` contains pin number of Raspberry Pi Pico.
+- There are usable pins in PTDeck are `0`,`1`,`2`,`3`,`4`,`5`,`6`,`7`,`8`,`9`,`10`,`11`,`12`,`13`.
+- Replace `PIN_NUMBER` with above values only.
+- `PRESS_COUNT` contain how many times the button of that pin pressed.
+- Replace `PRESS_COUNT_NUMBER` with values start from `2`.
+- `PAYLOAD_COUNT` contains payload number in `payloads` folder.
+- Replace `PAYLOAD_NUMBER` with values atarts from `15`.
+
+# Note for CONF File
+- Default payload numbers is from `1` to `14`.
+- Default press count is `1`.
+
+# Use Case Of CONF File
+- If you want to execute payload number `15` by press `2` times on pin number `0`, then conf file is set like :
+```
+PIN=0
+PRESS_COUNT=2
+PAYLOAD_COUNT=15
+```
+- If want to execute payload number `18` by press `3` times on pin number `0` without removing previous configuration, then conf file is set like :
+```
+PIN=0
+PRESS_COUNT=2
+PAYLOAD_COUNT=15
+
+PIN=0
+PRESS_COUNT=3
+PAYLOAD_COUNT=18
+```
 
 # Mnemonic Table
 | Mnemonics | Description | Example  |
