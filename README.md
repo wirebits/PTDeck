@@ -1,3 +1,5 @@
+![PTDeck](https://github.com/user-attachments/assets/e3d7a02c-3419-4c85-bc90-6c3623a00917)
+
 # PTDeck
 A powerful 14-key customizable macro pad powered by Raspberry Pi Pico designed for Purple Teaming.
 
